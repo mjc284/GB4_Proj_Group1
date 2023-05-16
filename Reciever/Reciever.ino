@@ -9,59 +9,18 @@ void loop() {
   while (Serial.available() > 0) {
     char c = Serial.read();
     char mode = 1;
-    if(mode == 0)
+
+    if(c == 'u')
     {
-      if(c == 'u')
-      {
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(300);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(300);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(300);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-      }
-      else if(c == 'd')
-      {
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(600);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-      }
+      digitalWrite(13, HIGH);
+      delay(100);
+      digitalWrite(13, LOW);
     }
-    else if(mode == 1)
+    else if(c == 'd')
     {
-      if(c == 'u')
-      {
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(200);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-      }
-      else if(c == 'd')
-      {
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-        delay(600);
-        digitalWrite(13, HIGH);
-        delay(100);
-        digitalWrite(13, LOW);
-      }
+      digitalWrite(13, HIGH);
+      delay(2000);
+      digitalWrite(13, LOW);
     }
   }
   delay(10);
