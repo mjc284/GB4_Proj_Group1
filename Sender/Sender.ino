@@ -7,15 +7,17 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
-    char c = Serial.read();
-    if(c == 'u')
+    char c1 = Serial.read();
+    char c2 = Serial.read();
+    if((c1 == 'u') and (c2 == 'p'))
     {
       digitalWrite(13, HIGH);
     }
-    else if(c == 'd')
+    else if((c1 == 'd') and (c2 = 'o'))
     {
       digitalWrite(13, LOW);
     }
+  }
     /*
     if(c == 'u')
     {

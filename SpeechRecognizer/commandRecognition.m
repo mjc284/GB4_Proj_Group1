@@ -27,14 +27,18 @@ r = 0;
 oldYMode = "background";
 
 arduino = serialport('/dev/cu.usbmodem141401', 9600);
-pause(5);
+pause(2);
 write(arduino, 'u', 'char');
-pause(1);
+write(arduino, 'p', 'char');
+pause(2);
 write(arduino, 'd', 'char');
+write(arduino, 'o', 'char');
 pause(0.3);
 write(arduino, 'u', 'char');
+write(arduino, 'p', 'char');
 pause(0.3);
 write(arduino, 'd', 'char');
+write(arduino, 'o', 'char');
 
 while ishandle(h) && toc < timeLimit
 
@@ -85,16 +89,42 @@ while ishandle(h) && toc < timeLimit
     if YMode ~= oldYMode
         if YMode == "up"
             write(arduino, 'u', 'char');
+            write(arduino, 'p', 'char');
             pause(0.300);
             write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
             pause(0.300);
             write(arduino, 'u', 'char');
+            write(arduino, 'p', 'char');
             pause(0.300);
             write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
+            pause(0.3);
+            write(arduino, 'u', 'char');
+            write(arduino, 'p', 'char');
+            pause(0.300);
+            write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
+            pause(0.300);
+            write(arduino, 'u', 'char');
+            write(arduino, 'p', 'char');
+            pause(0.300);
+            write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
+            pause(0.3);
         elseif YMode == "down"
             write(arduino, 'u', 'char');
-            pause(1);
+            write(arduino, 'p', 'char');
+            pause(0.3);
             write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
+            pause(0.3);
+            write(arduino, 'u', 'char');
+            write(arduino, 'p', 'char');
+            pause(0.3);
+            write(arduino, 'd', 'char');
+            write(arduino, 'o', 'char');
+            pause(0.3);
         end
     end
     oldYMode = YMode;
@@ -103,6 +133,8 @@ while ishandle(h) && toc < timeLimit
 end
 
 write(arduino, 'u', 'char');
-pause(1);
+write(arduino, 'p', 'char');
+pause(2);
 write(arduino, 'd', 'char');
+write(arduino, 'o', 'char');
 

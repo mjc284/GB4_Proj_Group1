@@ -1,15 +1,16 @@
 
-a = arduino('/dev/cu.usbmodem144401', 'Uno');
-configurePin(a, 'A0', 'AnalogInput');
+a = arduino('/dev/cu.usbmodem141401', 'Uno');
+%configurePin(a, 'A0', 'AnalogInput');
 sf = 100;
-voltages = [];
+voltages = 0;
 count = 0;
 
 while count < 100
-    a0 = readVoltage(a,"A0");
+    %a0 = readVoltage(a,"A0");
+    c = read(arduino, 'char');
     pause(1/sf);
-    voltages = [voltages; a0];
-    count =+ 1;
+    voltages = [voltages; c];
+    count = count + 1;
 
 end
 
