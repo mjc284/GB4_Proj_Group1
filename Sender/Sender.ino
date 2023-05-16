@@ -11,6 +11,15 @@ void loop() {
     if(c == 'u')
     {
       digitalWrite(13, HIGH);
+    }
+    else if(c == 'd')
+    {
+      digitalWrite(13, LOW);
+    }
+    /*
+    if(c == 'u')
+    {
+      digitalWrite(13, HIGH);
       delay(300);
       digitalWrite(13, LOW);
       delay(300);
@@ -24,6 +33,6 @@ void loop() {
       delay(1000);
       digitalWrite(13, LOW);
     }
-  }
+  }*/
   delay(10);
 }

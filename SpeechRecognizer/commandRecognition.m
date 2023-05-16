@@ -27,6 +27,15 @@ r = 0;
 oldYMode = "background";
 
 arduino = serialport('/dev/cu.usbmodem141401', 9600);
+pause(5);
+write(arduino, 'u', 'char');
+pause(1);
+write(arduino, 'd', 'char');
+pause(0.3);
+write(arduino, 'u', 'char');
+pause(0.3);
+write(arduino, 'd', 'char');
+
 while ishandle(h) && toc < timeLimit
 
     % Extract audio samples from the audio device and add the samples to
@@ -76,7 +85,15 @@ while ishandle(h) && toc < timeLimit
     if YMode ~= oldYMode
         if YMode == "up"
             write(arduino, 'u', 'char');
+            pause(0.300);
+            write(arduino, 'd', 'char');
+            pause(0.300);
+            write(arduino, 'u', 'char');
+            pause(0.300);
+            write(arduino, 'd', 'char');
         elseif YMode == "down"
+            write(arduino, 'u', 'char');
+            pause(1);
             write(arduino, 'd', 'char');
         end
     end
@@ -84,3 +101,8 @@ while ishandle(h) && toc < timeLimit
 
     drawnow
 end
+
+write(arduino, 'u', 'char');
+pause(1);
+write(arduino, 'd', 'char');
+
