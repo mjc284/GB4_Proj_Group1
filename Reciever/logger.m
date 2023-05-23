@@ -1,3 +1,6 @@
+
+
+
 %initialize arduino
 a = arduino();
 clear a;
@@ -8,6 +11,7 @@ configurePin(a, 'A0', 'AnalogInput');
 h = figure('Units','normalized','Position',[0.2 0.1 0.6 0.8]);
 x = zeros(50);
 y = zeros(50);
+dy = zeros(50);
 tic
 while ishandle(h)
 
@@ -20,13 +24,20 @@ while ishandle(h)
     axis tight;
     ylim([0,5]);
 
+    dy = [dy(2:end), (y(end) - y(end-1))/(x(end) - x(end-1))];
+
+    subplot(2,1,2);
+    plot(dy);
+    axis tight;
+    ylim([0,5]);
+
     pause(0.01);
 
 end
 
-z = [transpose(x), transpose(y)];
+z = [transpose(x), transpose(y), transpose(dy)];
 
-writematrix(z, 'data/0.5x30cm50ms3.csv')
+writematrix(z, 'data/dx30cm8s.csv')
 
 %clear arduino instant
 clear a

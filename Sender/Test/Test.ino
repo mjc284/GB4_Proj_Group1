@@ -8,8 +8,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  while (1) {
+    delay(10);
+    if(digitalRead(12) == 0)
+      goto redo;
+  }
   redo:
-  delay(1000);
+  delay(8000);
   digitalWrite(13, HIGH);
   delay(100);
   digitalWrite(13, LOW);
@@ -19,11 +24,5 @@ void loop() {
   digitalWrite(13, HIGH);
   delay(50);
   digitalWrite(13, LOW);
-
-  while (1) {
-    delay(10);
-    if(digitalRead(12) == 0)
-      goto redo;
-  }
-  delay(10);
+  goto redo;
 }

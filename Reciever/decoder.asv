@@ -1,0 +1,10 @@
+
+
+
+function [x] = deriv(x, x_old, dt)
+    dx = x - x_old/dt;
+
+a = 3;
+x_old = 2;
+dt = 1;
+y = a(x, x_old, dt);
