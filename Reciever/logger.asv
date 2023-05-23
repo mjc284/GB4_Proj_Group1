@@ -1,0 +1,30 @@
+%initialize arduino
+a = arduino();
+clear a;
+a = arduino();%('/dev/cu.usbserial-1410', 'Uno');
+configurePin(a, 'A0', 'AnalogInput');
+
+%create figure
+h = figure('Units','normalized','Position',[0.2 0.1 0.6 0.8]);
+
+y = zeros(1000);
+tic
+while ishandle(h) && toc < timeLimit
+
+    y = [y(2:end), readVoltage(a,'A0')];
+
+    % Plot the current waveform and spectrogram.
+    subplot(2,1,1);
+    plot(y);
+    axis tight;
+    ylim([0,5]);
+
+    pause(0.01);
+
+    % Update
+    oldState = currentState;
+    timer = timer + 1;
+end
+
+%clear arduino instant
+clear a
