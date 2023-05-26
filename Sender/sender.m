@@ -95,30 +95,47 @@ while ishandle(h) && toc < timeLimit
         if keyMode == 0
             if YMode == "up" %OOK 2 Pulses
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(4);
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(4);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.1);
+                writeDigitalPin(a, 'D13', 0);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 0);
+                pause(8);
             elseif YMode == "down" %OOK 1 Pulse
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 1);
-                pause(0.3);
+                pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(0.3);
+                pause(4);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.1);
+                writeDigitalPin(a, 'D13', 0);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 0);
+                pause(12);
+               
             end
         else
             if YMode == "up" %PWM long pulse
