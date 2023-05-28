@@ -16,7 +16,7 @@ probThreshold = 0.7;
 %initialize arduino
 a = arduino();
 clear a;
-a = arduino()%('/dev/cu.usbmodem141401', 'Uno');
+a = arduino();%('/dev/cu.usbmodem141401', 'Uno');
 configurePin(a, 'D13', 'DigitalOutput');
 writeDigitalPin(a, 'D13', 0);
 
@@ -101,7 +101,7 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(4);
+                pause(6);
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -109,24 +109,7 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(4);
-                writeDigitalPin(a, 'D13', 1);
-                pause(0.1);
-                writeDigitalPin(a, 'D13', 0);
-                pause(0.05);
-                writeDigitalPin(a, 'D13', 1);
-                pause(0.05);
-                writeDigitalPin(a, 'D13', 0);
-                pause(8);
-            elseif YMode == "down" %OOK 1 Pulse
-                writeDigitalPin(a, 'D13', 1);
-                pause(0.1);
-                writeDigitalPin(a, 'D13', 0);
-                pause(0.05);
-                writeDigitalPin(a, 'D13', 1);
-                pause(0.05);
-                writeDigitalPin(a, 'D13', 0);
-                pause(4);
+                pause(6);
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -135,6 +118,23 @@ while ishandle(h) && toc < timeLimit
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
                 pause(12);
+            elseif YMode == "down" %OOK 1 Pulse
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.1);
+                writeDigitalPin(a, 'D13', 0);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 0);
+                pause(6);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.1);
+                writeDigitalPin(a, 'D13', 0);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 1);
+                pause(0.05);
+                writeDigitalPin(a, 'D13', 0);
+                pause(18);
                
             end
         else
