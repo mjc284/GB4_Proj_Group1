@@ -22,14 +22,14 @@ writeDigitalPin(a, 'D13', 0);
 
 
 %turn on sprayer
-pause(2);
-writeDigitalPin(a, 'D13', 1);
-pause(2);
-writeDigitalPin(a, 'D13', 0);
-pause(0.3);
-writeDigitalPin(a, 'D13', 1);
-pause(0.3);
-writeDigitalPin(a, 'D13', 0);
+%pause(2);
+%writeDigitalPin(a, 'D13', 1);
+%pause(2);
+%writeDigitalPin(a, 'D13', 0);
+%pause(0.3);
+%writeDigitalPin(a, 'D13', 1);
+%pause(0.3);
+%writeDigitalPin(a, 'D13', 0);
 
 keyMode = 0; %0 = OOK, 1 = PWM
 
@@ -92,8 +92,8 @@ while ishandle(h) && toc < timeLimit
     end
 
     if YMode ~= oldYMode
-        if keyMode == 0
-            if YMode == "up" %OOK 2 Pulses
+        if keyMode == 0 %OOK
+            if YMode == "up" %OOK "1110"
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -101,7 +101,8 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(6);
+                pause(6); %'1'
+
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -109,7 +110,8 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(6);
+                pause(6); %'1'
+
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -117,8 +119,11 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(12);
-            elseif YMode == "down" %OOK 1 Pulse
+                pause(6); %'1'
+
+                pause(6); %'0'
+
+            elseif YMode == "down" %OOK "1100"
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -126,7 +131,8 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(6);
+                pause(6); %'1'
+
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
                 writeDigitalPin(a, 'D13', 0);
@@ -134,10 +140,14 @@ while ishandle(h) && toc < timeLimit
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.05);
                 writeDigitalPin(a, 'D13', 0);
-                pause(18);
+                pause(6); %'1'
+
+                pause(6); %'0'
+
+                pause(6); %'0'
                
             end
-        else
+        else %PWM
             if YMode == "up" %PWM long pulse
                 writeDigitalPin(a, 'D13', 1);
                 pause(0.1);
