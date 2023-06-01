@@ -39,6 +39,7 @@ while ishandle(h)
     % Detect concentration
     x = [x(2:end), toc];
     y1 = [y1(2:end), readVoltage(a,'A0')];
+    y2 = [y1(2:end), readVoltage(a,'A1')];
 
     % Calculate derivatives
     dy1 = [dy1(2:end), (y1(end) - y1(end-1))/(x(end) - x(end-1))];
