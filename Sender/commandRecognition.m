@@ -86,56 +86,5 @@ while ishandle(h) && toc < timeLimit
         title(string(YMode),'FontSize',20)
     end
 
-    %if YMode ~= oldYMode
-    %    if YMode == "up"
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.3);
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.300);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.3);
-    %    elseif YMode == "down"
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.3);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.3);
-    %        write(arduino, 'u', 'char');
-    %        write(arduino, 'p', 'char');
-    %        pause(0.3);
-    %        write(arduino, 'd', 'char');
-    %        write(arduino, 'o', 'char');
-    %        pause(0.3);
-    %    end
-    %end
-    %oldYMode = YMode;
-
     drawnow
 end
-
-%write(arduino, 'u', 'char');
-%write(arduino, 'p', 'char');
-%pause(2);
-%write(arduino, 'd', 'char');
-%write(arduino, 'o', 'char');
-%
-%clear(arduino);

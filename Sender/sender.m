@@ -1,4 +1,5 @@
-load('commandNet.mat') %loads the pretrained network
+% Load the pretrained network
+load('commandNet.mat') 
 fs = 16e3;
 classificationRate = 20;
 adr = audioDeviceReader('SampleRate',fs,'SamplesPerFrame',floor(fs/classificationRate));
@@ -11,17 +12,16 @@ YBuffer(1:classificationRate/2) = categorical("background");
 probBuffer = zeros([numel(labels),classificationRate/2]);
 
 countThreshold = ceil(classificationRate*0.2);
-probThreshold = 0.7;
+probThreshold = 0.9;
 
-%initialize arduino
+% Initialize arduino
 a = arduino();
 clear a;
 a = arduino();%('/dev/cu.usbmodem141401', 'Uno');
 configurePin(a, 'D13', 'DigitalOutput');
 writeDigitalPin(a, 'D13', 0);
 
-
-%turn on sprayer
+% Turn on sprayer
 %pause(2);
 %writeDigitalPin(a, 'D13', 1);
 %pause(2);
@@ -31,24 +31,20 @@ writeDigitalPin(a, 'D13', 0);
 %pause(0.3);
 %writeDigitalPin(a, 'D13', 0);
 
+% Configure program settings
 keyMode = 0; %0 = OOK, 1 = PWM
+transmitRandom = 0; %0 = voice recognition, 1 = random sequence transmission
 
-%initiate figure display
+% Initiate figure display
 h = figure('Units','normalized','Position',[0.2 0.1 0.6 0.8]);
 
 timeLimit = inf;
-
 tic
-ymd = [];
-out = 0;
-r = 0;
-
 oldYMode = "background";
 
 while ishandle(h) && toc < timeLimit
 
-    % Extract audio samples from the audio device and add the samples to
-    % the buffer.
+    % Extract audio samples from the audio device and add the samples to the buffer.
     x = adr();
     write(audioBuffer,x);
     y = read(audioBuffer,fs,fs-adr.SamplesPerFrame);
@@ -73,24 +69,35 @@ while ishandle(h) && toc < timeLimit
     caxis([-4 2.6445])
     shading flat
 
-    % Now do the actual command detection by performing a very simple
-    % thresholding operation. Declare a detection and display it in the
-    % figure title if all of the following hold: 1) The most common label
-    % is not background. 2) At least countThreshold of the latest frame
-    % labels agree. 3) The maximum probability of the predicted label is at
-    % least probThreshold. Otherwise, do not declare a detection.
+    % Detection by performing a very simple
+    % thresholding operation. 
     [YMode,count] = mode(YBuffer);
 
+    % (Random mode: Generate random command)
+    if transmitRandom == 1
+        tmp = randi([0, 1]);
+        if tmp == 0
+            YMode = "up";
+        else
+            YMode = "down";
+        end
+    end
+
     maxProb = max(probBuffer(labels == YMode,:));
-    subplot(2,1,1);
-
-
+    %subplot(2,1,1);
+    
+    % Label class
     if YMode == "background" || count < countThreshold || maxProb < probThreshold
         title("",'FontSize',20)
     else
         title(string(YMode),'FontSize',20)
     end
 
+    if transmitRandom == 1
+        title(string(YMode),'FontSize',20)
+    end
+
+    % Send command
     if YMode ~= oldYMode
         if keyMode == 0 %OOK
             if YMode == "up" %OOK "1110"
@@ -175,9 +182,10 @@ while ishandle(h) && toc < timeLimit
 end
 
 %turn off sprayer
-writeDigitalPin(a, 'D13', 1);
-pause(2);
-writeDigitalPin(a, 'D13', 0);
+%writeDigitalPin(a, 'D13', 1);
+%pause(2);
+%writeDigitalPin(a, 'D13', 0);
+
 
 %clear arduino instant
 clear a
